@@ -8,7 +8,7 @@
 ```
 npm install
 createdb
-example.env --> .env
+mv example.env --> .env
 npm run migrate
 npm run dev
 
@@ -20,20 +20,10 @@ npm run dev
 
 ### `GET /`
 
-Returns all current resources being listed as an array.
-
-### `GET /`
-
-Returns a single resource with corresponding ID
-
 Sample Query
 
 ```
-[
-  {
 
-    },
-]
 
 ```
 
@@ -46,21 +36,13 @@ Sample Query
 ### `POST /api/resources`
 
 ```
-[
-  {
 
-    },
-]
 ```
 
 ### `PATCH /`
 
 ```
-[
-  {
 
-    },
-]
 ```
 
 ### `DELETE /`
