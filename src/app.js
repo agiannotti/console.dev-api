@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const foldersRouter = require('./Folders/folder-router');
 const noteRouter = require('./Notes/note-router');
+const userRouter = require('./auth/auth-router');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cors());
 
 app.use('/api/folder', foldersRouter);
 app.use('/api/note', noteRouter);
+app.use('/api/user', userRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello, Console.dev!');
