@@ -19,10 +19,10 @@ app.use('/api/folder', foldersRouter);
 app.use('/api/note', noteRouter);
 
 app.get('/', (req, res) => {
-  res.send('Hello, world!');
+  res.send('Hello, Console.dev!');
 });
 
-app.use(function errorHandler(error, req, res, next) {
+app.use(function errorHandler(error, req, res, __next) {
   let response;
   if (NODE_ENV === 'production') {
     response = { error: { message: 'server error' } };
