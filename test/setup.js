@@ -1,7 +1,16 @@
-const supertest = require('supertest');
+process.env.TZ = 'UCT';
+process.env.NODE_ENV = 'test';
+process.env.JWT_SECRET = 'test-jwt-secret';
+process.env.JWT_EXPIRY = '3m';
+
+require('dotenv').config();
+
+process.env.TEST_DATABASE_URL =
+  process.env.TEST_DATABASE_URL ||
+  'postgresql://agiannotti@localhost/console_db_test';
+
 const { expect } = require('chai');
+const supertest = require('supertest');
 
-global.supertest = supertest;
 global.expect = expect;
-
-console.log('This file always runs first for any test');
+global.supertest = supertest;

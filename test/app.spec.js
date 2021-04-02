@@ -1,9 +1,9 @@
 const app = require('../src/app');
 
-describe('App module', () => {
+describe('App', () => {
   describe('GET /', () => {
-    it('Should return 200 and "Hello, world!', () => {
-      return supertest(app).get('/').expect(200, { message: 'Hello, world!' });
+    it('Should return 200 and "Hello, Console.dev!', () => {
+      return supertest(app).get('/').expect(200, 'Hello, Console.dev!');
     });
   });
 });

@@ -6,8 +6,8 @@ const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const foldersRouter = require('./Folders/folder-router');
 const noteRouter = require('./Notes/note-router');
-const userRouter = require('./auth/auth-router');
-
+const userRouter = require('./user/user-router');
+const authRouter = require('./auth/auth-router');
 const app = express();
 
 const morganOption = NODE_ENV === 'production' ? 'tiny' : 'common';
@@ -18,6 +18,7 @@ app.use(cors());
 
 app.use('/api/folder', foldersRouter);
 app.use('/api/note', noteRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 
 app.get('/', (req, res) => {

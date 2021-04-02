@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+
 const app = require('../src/app');
 const helpers = require('./test-helpers');
 
@@ -169,66 +170,6 @@ describe('User Endpoints', function () {
                 expect(compareMatch).to.be.true;
               })
           );
-      });
-
-      it(`inserts 1 language with words for the new user`, () => {
-        const newUser = {
-          username: 'test username',
-          password: '11AAaa!!',
-          name: 'test name',
-        };
-        const expectedList = {
-          name: 'Latin',
-          total_score: 0,
-          words: [
-            { original: 'ad hoc', translation: 'to this' },
-            { original: 'bona fide', translation: 'with good faith' },
-            { original: 'multi', translation: 'many' },
-            { original: 'impromptu', translation: 'spontaneous' },
-            { original: 'bonus', translation: 'good' },
-            { original: 'et cetera', translation: 'and so on' },
-            { original: 'carpe diem', translation: 'seize the day' },
-            { original: 'de facto', translation: 'infact' },
-          ],
-        };
-        return supertest(app)
-          .post('/api/user')
-          .send(newUser)
-          .then((res) =>
-            /*
-            get languages and words for user that were inserted to db
-            */
-            db
-              .from('language')
-              .select(
-                'language.*',
-                db.raw(
-                  `COALESCE(
-                  json_agg(DISTINCT word)
-                  filter(WHERE word.id IS NOT NULL),
-                  '[]'
-                ) AS words`
-                )
-              )
-              .leftJoin('word', 'word.language_id', 'language.id')
-              .groupBy('language.id')
-              .where({ user_id: res.body.id })
-          )
-          .then((dbLists) => {
-            expect(dbLists).to.have.length(1);
-
-            expect(dbLists[0].name).to.eql(expectedList.name);
-            expect(dbLists[0].total_score).to.eql(0);
-
-            const dbWords = dbLists[0].words;
-            expect(dbWords).to.have.length(expectedList.words.length);
-
-            expectedList.words.forEach((expectedWord, w) => {
-              expect(dbWords[w].original).to.eql(expectedWord.original);
-              expect(dbWords[w].translation).to.eql(expectedWord.translation);
-              expect(dbWords[w].memory_value).to.eql(1);
-            });
-          });
       });
     });
   });
