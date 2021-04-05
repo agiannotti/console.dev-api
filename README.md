@@ -1,7 +1,7 @@
 # Console.dev Server + API Application
 
-[Live Server Deployment]()  
-[Live Client Deployment]()
+[Live Server Deployment](https://console-app-server.herokuapp.com/)  
+[Live Client Deployment](https://console-dev-client.vercel.app/)
 
 ## Installation
 
@@ -15,39 +15,8 @@ npm run dev
 ```
 
 ## Summary
-
-## API Documention
-
-### `GET /`
-
-Sample Query
-
-```
-
-
-```
-
-•
-•
-•
-•
-•
-
-### `POST /api/resources`
-
-```
-
-```
-
-### `PATCH /`
-
-```
-
-```
-
-### `DELETE /`
-
-Remove resource by id from list of resources.
+API for Authentication, protected endpoints and encryption.
+Database for user tables. 
 
 ## Technology Used
 
@@ -55,5 +24,4 @@ Remove resource by id from list of resources.
 • Express  
 • Node  
 • Supertest, Mocha, Chai for integrated testing  
-• Knex for building queries to relational database  
 • PostgreSQL
